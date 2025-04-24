@@ -123,75 +123,33 @@
           </p>
 
           <ul class="grid-list">
+              <% categories.forEach(category => { %>
 
             <li>
-              <div class="service-card">
-
-                <a href="#" class="has-before hover:shine">
-                  <figure class="card-banner img-holder" style="--width: 285; --height: 336;">
-                    <img src="/images/service-1.jpg" width="285" height="336" loading="lazy" alt="Breakfast"
+                 
+                <div class="service-card">
+                    
+                    <a href="#" class="has-before hover:shine">
+                        <figure class="card-banner img-holder" style="--width: 285; --height: 336;">
+                            <img src="<%= category.image %>" width="285" height="336" loading="lazy" alt="Breakfast"
                       class="img-cover">
-                  </figure>
+                    </figure>
                 </a>
 
                 <div class="card-content">
-
+                    
                   <h3 class="title-4 card-title">
-                    <a href="#">Breakfast</a>
+                    <a href="#"><%= category.name %></a>
                   </h3>
-
+                  
                   <a href="#" class="btn-text hover-underline label-2">View Menu</a>
-
+                  
                 </div>
-
-              </div>
+                
             </li>
+            <% }) %>
 
-            <li>
-              <div class="service-card">
-
-                <a href="#" class="has-before hover:shine">
-                  <figure class="card-banner img-holder" style="--width: 285; --height: 336;">
-                    <img src="/images/service-2.jpg" width="285" height="336" loading="lazy" alt="Appetizers"
-                      class="img-cover">
-                  </figure>
-                </a>
-
-                <div class="card-content">
-
-                  <h3 class="title-4 card-title">
-                    <a href="#">Appetizers</a>
-                  </h3>
-
-                  <a href="#" class="btn-text hover-underline label-2">View Menu</a>
-
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="service-card">
-
-                <a href="#" class="has-before hover:shine">
-                  <figure class="card-banner img-holder" style="--width: 285; --height: 336;">
-                    <img src="/images/service-3.jpg" width="285" height="336" loading="lazy" alt="Drinks"
-                      class="img-cover">
-                  </figure>
-                </a>
-
-                <div class="card-content">
-
-                  <h3 class="title-4 card-title">
-                    <a href="#">Drinks</a>
-                  </h3>
-
-                  <a href="#" class="btn-text hover-underline label-2">View Menu</a>
-
-                </div>
-
-              </div>
-            </li>
+           
 
           </ul>
 

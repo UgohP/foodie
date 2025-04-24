@@ -1,0 +1,65 @@
+<main>
+    
+    <form action="/category" method="POST" enctype="multipart/form-data">
+        <div class="head-title">
+            <div class="left">
+                <h1>Add Category</h1>
+            </div>
+        </div>
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Item Name">
+
+        <label for="image">Image</label>
+        <input type="file" id="image" name="image" placeholder="upload Image">
+
+        <input type="submit" value="Submit">
+    </form>
+    
+    <br>
+    <form action="#" enctype="multipart/form-data">
+        <div class="head-title">
+            <div class="left">
+                <h1>Add Item</h1>
+            </div>
+        </div>   
+
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Item Name">
+      
+        <label for="category">Category</label>
+        <select id="category" name="category">
+          <option value="australia">Australia</option>
+          <option value="canada">Canada</option>
+          <option value="usa">USA</option>
+        </select>
+
+        <label for="newPrice">New Price</label>
+        <input type="number" id="newPrice" name="newPrice" placeholder="0.00">
+       
+        <label for="oldPrice">Old Price</label>
+        <input type="number" id="oldPrice" name="oldPrice" placeholder="0.00">
+       
+        <label for="description">Description</label>
+        <textarea id="description" name="description" placeholder="description.." style="height:200px"></textarea>
+        
+        <label for="image1">Image1</label>
+        <input type="file" id="image1" name="image1" placeholder="upload Image">
+       
+        <label for="image2">Image2</label>
+        <input type="file" id="image2" name="image2" placeholder="upload Image">
+       
+        <label for="image3">Image3</label>
+        <input type="file" id="image3" name="image3" placeholder="upload Image">
+       
+        <label>
+            <input type="checkbox" name="seasonal"> Seasonal
+          </label>
+<br>
+          <label>
+            <input type="checkbox" name="new"> New
+          </label>
+      
+        <input type="submit" value="Submit">
+      </form>
+<main>
+

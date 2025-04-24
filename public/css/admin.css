@@ -39,6 +39,7 @@ body.dark {
 	--light: #0C0C1E;
 	--grey: #060714;
 	--dark: #FBFBFB;
+    color: var(--blue)
 }
 
 body {
@@ -486,14 +487,14 @@ body {
 }
 
 
-#content main .table-data .todo {
+#content main .table-data .category {
 	flex-grow: 1;
 	flex-basis: 300px;
 }
-#content main .table-data .todo .todo-list {
+#content main .table-data .category .category-list {
 	width: 100%;
 }
-#content main .table-data .todo .todo-list li {
+#content main .table-data .category .category-list li {
 	width: 100%;
 	margin-bottom: 16px;
 	background: var(--grey);
@@ -503,16 +504,16 @@ body {
 	justify-content: space-between;
 	align-items: center;
 }
-#content main .table-data .todo .todo-list li .bx {
+#content main .table-data .category .category-list li .bx {
 	cursor: pointer;
 }
-#content main .table-data .todo .todo-list li.completed {
+#content main .table-data .category .category-list li.completed {
 	border-left: 10px solid var(--blue);
 }
-#content main .table-data .todo .todo-list li.not-completed {
+#content main .table-data .category .category-list li.not-completed {
 	border-left: 10px solid var(--orange);
 }
-#content main .table-data .todo .todo-list li:last-child {
+#content main .table-data .category .category-list li:last-child {
 	margin-bottom: 0;
 }
 /* MAIN */
@@ -586,7 +587,37 @@ body {
 	#content main .table-data .order table {
 		min-width: 420px;
 	}
-	#content main .table-data .todo .todo-list {
+	#content main .table-data .category .category-list {
 		min-width: 420px;
 	}
 }
+
+
+/* Style inputs */
+input[type=text], input[type="number"], input[type="file"], select, textarea {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  
+  /* Style the submit button */
+  input[type=submit] {
+    width: 100%;
+    background-color:  hsla(210, 4%, 9%, 1);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* Add a background color to the submit button on mouse-over */
+  input[type=submit]:hover {
+    background-color:hsla(0, 0%, 0%, 1);;
+  }

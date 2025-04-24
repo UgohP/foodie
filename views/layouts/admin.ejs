@@ -4,15 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Document</title>
+    <title>Admin Panel</title>
+      <!-- 
+    - favicon
+  -->
+  <link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml">
     	<!-- Boxicons -->
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="/css/admin.css">
 
+
 </head>
 <body>
     <%- include('../partials/sidebar_admin.ejs')%>
+    <section id="content">
+    <%- include('../partials/navbar_admin.ejs')%>
     <%-body %>
+</section>
     <script type='text/javascript' src="/js/admin.js"></script>
 </body>
 </html>
