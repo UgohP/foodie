@@ -4,11 +4,13 @@ const adminLayout = "../views/layouts/admin";
 const upload = require("../middleware/upload");
 const Category = require("../models/Category");
 const Item = require("../models/Item");
+const Reservation = require("../models/Reservation");
 
 router.get("/dashboard", async (req, res) => {
   try {
     const categories = await Category.find();
-    res.render("admin/index", { categories, layout: adminLayout });
+    const items = await Item.find().populate("category");
+    res.render("admin/index", { categories, items, layout: adminLayout });
   } catch (error) {
     console.log(error);
   }
@@ -41,6 +43,7 @@ router.post(
       description,
       seasonalItem,
       newItem,
+      isSpecial,
     } = req.body;
     const image1 = req.files.image1
       ? "/uploads/" + req.files.image1[0].filename
@@ -59,9 +62,10 @@ router.post(
       image2,
       seasonalItem: seasonalItem === "on", // checkbox values
       newItem: newItem === "on",
+      isSpecial: isSpecial === "on",
     });
     await Item.create(newItems);
-    res.json({ newItems });
+    res.redirect("/dashboard");
   }
 );
 router.get("/add", async (req, res) => {
@@ -83,7 +87,8 @@ router.get("/store", async (req, res) => {
 
 router.get("/reservations", async (req, res) => {
   try {
-    res.render("admin/reservations", { layout: adminLayout });
+    const reservations = await Reservation.find();
+    res.render("admin/reservations", { reservations, layout: adminLayout });
   } catch (error) {
     console.log(error);
   }

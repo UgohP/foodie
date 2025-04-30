@@ -223,49 +223,54 @@
 
       <!-- 
         - #SPECIAL DISH
-      -->
-
-      <section class="special-dish text-center" aria-labelledby="dish-label">
-
-        <div class="special-dish-banner">
-          <img src="/images/special-dish-banner.jpg" width="940" height="900" loading="lazy" alt="special dish"
-            class="img-cover">
-        </div>
-
-        <div class="special-dish-content bg-black-10">
-          <div class="container">
-
-            <img src="/images/badge-1.png" width="28" height="41" loading="lazy" alt="badge" class="abs-img">
-
-            <p class="section-subtitle label-2">Special Dish</p>
-
-            <h2 class="headline-1 section-title">Lobster Tortellini</h2>
-
-            <p class="section-text">
-              Lorem Ipsum is simply dummy text of the printingand typesetting industry lorem Ipsum has been the
-              industrys standard dummy text ever since the when an unknown printer took a galley of type.
-            </p>
-
-            <div class="wrapper">
-              <del class="del body-3">$40.00</del>
-
-              <span class="span body-1">$20.00</span>
+        -->
+        <hr>
+        <hr>
+        <% special.forEach(item => { %>
+        <section class="special-dish text-center" aria-labelledby="dish-label">
+            
+            <div class="special-dish-banner">
+              <img src="<%= item.image1 %>" width="940" height="900" loading="lazy" alt="special dish"
+              class="img-cover">
             </div>
-
-            <a href="#" class="btn btn-primary">
-              <span class="text text-1">View All Menu</span>
-
-              <span class="text text-2" aria-hidden="true">View All Menu</span>
-            </a>
-
-          </div>
-        </div>
-
-        <img src="/images/shape-4.png" width="179" height="359" loading="lazy" alt="" class="shape shape-1">
-
-        <img src="/images/shape-9.png" width="351" height="462" loading="lazy" alt="" class="shape shape-2">
-
-      </section>
+            
+            <div class="special-dish-content bg-black-10">
+              <div class="container">
+    
+                <img src="/images/badge-1.png" width="28" height="41" loading="lazy" alt="badge" class="abs-img">
+    
+                <p class="section-subtitle label-2">Special Dish</p>
+    
+                <h2 class="headline-1 section-title"><%= item.name %></h2>
+                
+                <p class="section-text">
+                  <%= item.description %>
+                </p>
+    
+                <div class="wrapper">
+                  <del class="del body-3">$<%= item.oldPrice.toFixed(2)%></del>
+    
+                  <span class="span body-1">$<%= item.newPrice.toFixed(2) %></span>
+                </div>
+                
+                <a href="#" class="btn btn-primary">
+                  <span class="text text-1">View All Menu</span>
+    
+                  <span class="text text-2" aria-hidden="true">View All Menu</span>
+                </a>
+    
+              </div>
+            </div>
+    
+            <img src="/images/shape-4.png" width="179" height="359" loading="lazy" alt="" class="shape shape-1">
+            
+            <img src="/images/shape-9.png" width="351" height="462" loading="lazy" alt="" class="shape shape-2">
+            
+            
+          </section>
+          <hr>
+          <hr>
+          <% }) %>
 
 
 
@@ -283,173 +288,44 @@
           <h2 class="headline-1 section-title text-center">Delicious Menu</h2>
 
           <ul class="grid-list">
+            <% items.forEach(item => { %>
 
             <li>
               <div class="menu-card hover:card">
 
                 <figure class="card-banner img-holder" style="--width: 100; --height: 100;">
-                  <img src="/images/menu-1.png" width="100" height="100" loading="lazy" alt="Greek Salad"
+                  <img src="<%= item.image1 %>" width="100" height="100" loading="lazy" alt="image"
                     class="img-cover">
                 </figure>
 
                 <div>
-
+                   
+                  
                   <div class="title-wrapper">
                     <h3 class="title-3">
-                      <a href="#" class="card-title">Greek Salad</a>
+                      <a href="#" class="card-title"><%= item.name %></a>
                     </h3>
+                    <% if (item.isSeasonal) { %>
+                      <span class="badge label-1">Seasonal</span>
+                      <% } %>
+                      <% if (item.newItem) { %>
+                        <span class="badge label-1">New</span>
+                      <% } %>
 
-                    <span class="badge label-1">Seasonal</span>
-
-                    <span class="span title-2">$25.50</span>
+                    <span class="span title-2">$<%= item.newPrice.toFixed(2) %></span>
                   </div>
 
                   <p class="card-text label-1">
-                    Tomatoes, green bell pepper, sliced cucumber onion, olives, and feta cheese.
+                    <%= item.description %>
                   </p>
-
+                  
                 </div>
-
+                
               </div>
             </li>
+            <% }) %>
 
-            <li>
-              <div class="menu-card hover:card">
-
-                <figure class="card-banner img-holder" style="--width: 100; --height: 100;">
-                  <img src="/images/menu-2.png" width="100" height="100" loading="lazy" alt="Lasagne"
-                    class="img-cover">
-                </figure>
-
-                <div>
-
-                  <div class="title-wrapper">
-                    <h3 class="title-3">
-                      <a href="#" class="card-title">Lasagne</a>
-                    </h3>
-
-                    <span class="span title-2">$40.00</span>
-                  </div>
-
-                  <p class="card-text label-1">
-                    Vegetables, cheeses, ground meats, tomato sauce, seasonings and spices
-                  </p>
-
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="menu-card hover:card">
-
-                <figure class="card-banner img-holder" style="--width: 100; --height: 100;">
-                  <img src="/images/menu-3.png" width="100" height="100" loading="lazy" alt="Butternut Pumpkin"
-                    class="img-cover">
-                </figure>
-
-                <div>
-
-                  <div class="title-wrapper">
-                    <h3 class="title-3">
-                      <a href="#" class="card-title">Butternut Pumpkin</a>
-                    </h3>
-
-                    <span class="span title-2">$10.00</span>
-                  </div>
-
-                  <p class="card-text label-1">
-                    Typesetting industry lorem Lorem Ipsum is simply dummy text of the priand.
-                  </p>
-
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="menu-card hover:card">
-
-                <figure class="card-banner img-holder" style="--width: 100; --height: 100;">
-                  <img src="/images/menu-4.png" width="100" height="100" loading="lazy" alt="Tokusen Wagyu"
-                    class="img-cover">
-                </figure>
-
-                <div>
-
-                  <div class="title-wrapper">
-                    <h3 class="title-3">
-                      <a href="#" class="card-title">Tokusen Wagyu</a>
-                    </h3>
-
-                    <span class="badge label-1">New</span>
-
-                    <span class="span title-2">$39.00</span>
-                  </div>
-
-                  <p class="card-text label-1">
-                    Vegetables, cheeses, ground meats, tomato sauce, seasonings and spices.
-                  </p>
-
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="menu-card hover:card">
-
-                <figure class="card-banner img-holder" style="--width: 100; --height: 100;">
-                  <img src="/images/menu-5.png" width="100" height="100" loading="lazy" alt="Olivas Rellenas"
-                    class="img-cover">
-                </figure>
-
-                <div>
-
-                  <div class="title-wrapper">
-                    <h3 class="title-3">
-                      <a href="#" class="card-title">Olivas Rellenas</a>
-                    </h3>
-
-                    <span class="span title-2">$25.00</span>
-                  </div>
-
-                  <p class="card-text label-1">
-                    Avocados with crab meat, red onion, crab salad stuffed red bell pepper and green bell pepper.
-                  </p>
-
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="menu-card hover:card">
-
-                <figure class="card-banner img-holder" style="--width: 100; --height: 100;">
-                  <img src="/images/menu-6.png" width="100" height="100" loading="lazy" alt="Opu Fish"
-                    class="img-cover">
-                </figure>
-
-                <div>
-
-                  <div class="title-wrapper">
-                    <h3 class="title-3">
-                      <a href="#" class="card-title">Opu Fish</a>
-                    </h3>
-
-                    <span class="span title-2">$49.00</span>
-                  </div>
-
-                  <p class="card-text label-1">
-                    Vegetables, cheeses, ground meats, tomato sauce, seasonings and spices
-                  </p>
-
-                </div>
-
-              </div>
-            </li>
-
+          
           </ul>
 
           <p class="menu-text text-center">
@@ -518,7 +394,7 @@
 
           <div class="form reservation-form bg-black-10">
 
-            <form action="" class="form-left">
+            <form action="/reservation" method="POST" class="form-left">
 
               <h2 class="headline-1 text-center">Online Reservation</h2>
 
@@ -538,7 +414,7 @@
                 <div class="icon-wrapper">
                   <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
 
-                  <select name="person" class="input-field">
+                  <select name="persons" class="input-field">
                     <option value="1-person">1 Person</option>
                     <option value="2-person">2 Person</option>
                     <option value="3-person">3 Person</option>
@@ -554,7 +430,7 @@
                 <div class="icon-wrapper">
                   <ion-icon name="calendar-clear-outline" aria-hidden="true"></ion-icon>
 
-                  <input type="date" name="reservation-date" class="input-field">
+                  <input type="date" name="date" class="input-field">
 
                   <ion-icon name="chevron-down" aria-hidden="true"></ion-icon>
                 </div>
@@ -562,7 +438,7 @@
                 <div class="icon-wrapper">
                   <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
 
-                  <select name="person" class="input-field">
+                  <select name="time" class="input-field">
                     <option value="08:00am">08 : 00 am</option>
                     <option value="09:00am">09 : 00 am</option>
                     <option value="010:00am">10 : 00 am</option>
@@ -585,7 +461,7 @@
 
               </div>
 
-              <textarea name="message" placeholder="Message" autocomplete="off" class="input-field"></textarea>
+              <textarea name="description" placeholder="Message" autocomplete="off" class="input-field"></textarea>
 
               <button type="submit" class="btn btn-secondary">
                 <span class="text text-1">Book A Table</span>

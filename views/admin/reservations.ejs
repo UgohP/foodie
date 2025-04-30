@@ -1,1 +1,38 @@
-<main></main>
+<main>
+    <div class="table-data">
+        <div class="order">
+            <div class="head">
+                <h3>Reservations</h3>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Persons</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% reservations.forEach(reservation => { %>
+                    <tr>
+                            <td>
+                                <p><%= reservation.name %></p>
+                            </td>
+                            <td><%= reservation.phone %></td>
+                            <td><%= reservation.persons %></td>
+                            <td><%= reservation.date.toDateString() %></td>
+                            <td><%= reservation.time %></td>
+                            <td>
+                                <a href="">
+                                    <i class='bx' ><b>View &nearr;</b></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>

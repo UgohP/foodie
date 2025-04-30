@@ -34,6 +34,10 @@ const ItemSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  isSpecial: {
+    type: Boolean,
+    default: false,
+  }
 });
 
 const Item = mongoose.model("Item", ItemSchema);

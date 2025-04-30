@@ -96,75 +96,26 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>
-                                <img src="/images/people.png">
-                                <p>John Doe</p>
+                        <% items.forEach(item => { %>
+                         
+                            <tr>
+                                <td>
+                                <img src="<%= item.image1 %>">
+                                <p><%= item.name %></p>
                             </td>
-                            <td>₦ 0.00</td>
-                            <td>BreakFast</td>
-                            <td>
-                                <a href="">
-                                    <i class='bx' ><b>Edit &nearr;</b></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <img src="/images/people.png">
-                                <p>John Doe</p>
-                            </td>
-                            <td>₦ 0.00</td>
-                            <td>BreakFast</td>
+                            <td>$<%= item.newPrice %></td>
+                            <td><%= item.category.name %></td>
                             <td>
                                 <a href="">
                                     <i class='bx' ><b>Edit &nearr;</b></i>
                                 </a>
                             </td>
                         </tr>
-                        <tr>
-                            <td>
-                                <img src="/images/people.png">
-                                <p>John Doe</p>
-                            </td>
-                            <td>₦ 0.00</td>
-                            <td>BreakFast</td>
-                            <td>
-                                <a href="">
-                                    <i class='bx' ><b>Edit &nearr;</b></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <img src="/images/people.png">
-                                <p>John Doe</p>
-                            </td>
-                            <td>₦ 0.00</td>
-                            <td>BreakFast</td>
-                            <td>
-                                <a href="">
-                                    <i class='bx' ><b>Edit &nearr;</b></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <img src="/images/people.png">
-                                <p>John Doe</p>
-                            </td>
-                            <td>₦ 0.00</td>
-                            <td>BreakFast</td>
-                            <td>
-                                <a href="">
-                                    <i class='bx' ><b>Edit &nearr;</b></i>
-                                </a>
-                            </td>
-                        </tr>
+                        <% }) %>
                     </tbody>
                 </table>
             </div>
         </div>
     </main>
     <!-- MAIN -->
-<!-- CONTENT -->
+    <!-- CONTENT -->
