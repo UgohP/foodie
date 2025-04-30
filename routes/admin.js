@@ -9,7 +9,10 @@ const Reservation = require("../models/Reservation");
 router.get("/dashboard", async (req, res) => {
   try {
     const categories = await Category.find();
-    const items = await Item.find().populate("category");
+    const items = await Item.find()
+      .populate("category")
+      .sort({ _id: -1 })
+      .limit(5);
     res.render("admin/index", { categories, items, layout: adminLayout });
   } catch (error) {
     console.log(error);
@@ -79,7 +82,8 @@ router.get("/add", async (req, res) => {
 
 router.get("/store", async (req, res) => {
   try {
-    res.render("admin/store", { layout: adminLayout });
+    const items = await Item.find().populate("category").sort({ _id: -1 });
+    res.render("admin/store", { items, layout: adminLayout });
   } catch (error) {
     console.log(error);
   }

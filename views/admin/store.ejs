@@ -1,1 +1,39 @@
-<main></main>
+<main>
+<div class="table-data">
+    <div class="order">
+        <div class="head">
+            <h3>Items</h3>
+            <a href="">
+                <i class='bx' >View All &nearr;</i>
+            </a>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Price</th>
+                    <th>Category</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% items.forEach(item => { %>
+                 
+                    <tr>
+                        <td>
+                        <img src="<%= item.image1 %>">
+                        <p><%= item.name %></p>
+                    </td>
+                    <td>$<%= item.newPrice %></td>
+                    <td><%= item.category.name %></td>
+                    <td>
+                        <a href="">
+                            <i class='bx' ><b>Edit &nearr;</b></i>
+                        </a>
+                    </td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</div>
+</main>
