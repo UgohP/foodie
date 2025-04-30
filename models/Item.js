@@ -26,14 +26,11 @@ const ItemSchema = new mongoose.Schema({
   image2: {
     type: String,
   },
-  image3: {
-    type: String,
-  },
-  seasonal: {
+  seasonalItem: {
     type: Boolean,
     default: false,
   },
-  new: {
+  newItem: {
     type: Boolean,
     default: false,
   },

@@ -16,7 +16,7 @@
     </form>
     
     <br>
-    <form action="#" enctype="multipart/form-data">
+    <form action="/item" method="POST" enctype="multipart/form-data">
         <div class="head-title">
             <div class="left">
                 <h1>Add Item</h1>
@@ -28,9 +28,9 @@
       
         <label for="category">Category</label>
         <select id="category" name="category">
-          <option value="australia">Australia</option>
-          <option value="canada">Canada</option>
-          <option value="usa">USA</option>
+          <% categories.forEach(cat => { %>
+            <option value="<%= cat._id %>"><%= cat.name %></option>
+          <% }) %>
         </select>
 
         <label for="newPrice">New Price</label>
@@ -48,15 +48,12 @@
         <label for="image2">Image2</label>
         <input type="file" id="image2" name="image2" placeholder="upload Image">
        
-        <label for="image3">Image3</label>
-        <input type="file" id="image3" name="image3" placeholder="upload Image">
-       
         <label>
-            <input type="checkbox" name="seasonal"> Seasonal
+            <input type="checkbox" name="seasonalItem"> Seasonal
           </label>
 <br>
           <label>
-            <input type="checkbox" name="new"> New
+            <input type="checkbox" name="newItem"> New
           </label>
       
         <input type="submit" value="Submit">
