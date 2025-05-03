@@ -17,8 +17,14 @@
               <div class="container">
     
                 <img src="/images/badge-1.png" width="28" height="41" loading="lazy" alt="badge" class="abs-img">
-    
-                <p class="section-subtitle label-2">Special Dish</p>
+
+                <% if (item.seasonalItem) { %>
+                    <p class="section-subtitle label-2">Seasonal Dish</p>
+                <% } else if (item.newItem) { %>
+                    <p class="section-subtitle label-2">New Dish</p>
+                 <% } else if (item.isSpecial) { %>
+                    <p class="section-subtitle label-2">Special Dish</p>
+                <% } %>
     
                 <h2 class="headline-1 section-title"><%= item.name %></h2>
                 

@@ -25,7 +25,7 @@
                  
                 <div class="service-card">
                     
-                    <a href="#" class="has-before hover:shine">
+                    <a href="/category-item/<%= category._id %>" class="has-before hover:shine">
                         <figure class="card-banner img-holder" style="--width: 285; --height: 336;">
                             <img src="<%= category.image %>" width="285" height="336" loading="lazy" alt="Breakfast"
                       class="img-cover">
@@ -35,10 +35,10 @@
                 <div class="card-content">
                     
                   <h3 class="title-4 card-title">
-                    <a href="#"><%= category.name %></a>
+                    <a href="/category-item/<%= category._id %>"><%= category.name %></a>
                   </h3>
                   
-                  <a href="#" class="btn-text hover-underline label-2">View Menu</a>
+                  <a href="/category-item/<%= category._id %>" class="btn-text hover-underline label-2">View Menu</a>
                   
                 </div>
                 

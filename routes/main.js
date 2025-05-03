@@ -84,4 +84,20 @@ router.post("/reservation", async (req, res) => {
   }
 });
 
+router.get('/about', async(req, res) => {
+  try{
+    res.render('about')
+  }catch(error){
+    console.log(error)
+  }
+})
+
+router.get('/blogs', async(req, res) => {
+  try{
+    res.render('blog')
+  }catch(error){
+    console.log(error)
+  }
+})
+
 module.exports = router;
