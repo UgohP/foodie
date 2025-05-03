@@ -98,9 +98,9 @@ router.get("/reservations", async (req, res) => {
   }
 });
 
-router.get("/messages", async (req, res) => {
+router.get("/blog-admin", async (req, res) => {
   try {
-    res.render("admin/messages", { layout: adminLayout });
+    res.render("admin/blog", { layout: adminLayout });
   } catch (error) {
     console.log(error);
   }
