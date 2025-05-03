@@ -3,6 +3,7 @@ const router = express.Router();
 const Category = require("../models/Category");
 const Item = require("../models/Item");
 const Reservation = require("../models/Reservation");
+
 router.get("", async (req, res) => {
   try {
     const categories = await Category.find().limit(3);
@@ -16,7 +17,15 @@ router.get("", async (req, res) => {
     console.log(error);
   }
 });
-
+router.get("/item/:id", async (req, res) => {
+  try {
+    const itemId = req.params.id;
+    const item = await Item.findById({ _id: itemId });
+    res.render("item", { item });
+  } catch (error) {
+    console.log(error);
+  }
+});
 router.get("/categories", async (req, res) => {
   try {
     const categories = await Category.find();
@@ -35,6 +44,28 @@ router.get("/menus", async (req, res) => {
   }
 });
 
+router.get("/category-item/:id", async (req, res) => {
+  try {
+    const categoryId = req.params.id;
+    const items = await Item.find({ category: categoryId }).populate(
+      "category"
+    );
+    const category = await Category.findById(categoryId);
+    console.log("Category Item:", category);
+    res.render("categoryItem", { items, category });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.get("/reservation", async (req, res) => {
+  try {
+    res.render("reservation");
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 router.post("/reservation", async (req, res) => {
   try {
     const { name, phone, persons, date, time, description } = req.body;
@@ -47,7 +78,7 @@ router.post("/reservation", async (req, res) => {
       description,
     });
     await Reservation.create(newReservation);
-    res.json({newReservation});
+    res.json({ newReservation });
   } catch (error) {
     console.log(error);
   }

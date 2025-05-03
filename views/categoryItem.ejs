@@ -10,12 +10,14 @@
 
           <p class="section-subtitle text-center label-2">Special Selection</p>
 
-          <h2 class="headline-1 section-title text-center">Delicious Menu</h2>
+          <h2 class="headline-1 section-title text-center"><%= category.name %></h2>
 
+          <% if (items.length > 0) { %>
           <ul class="grid-list">
             <% items.forEach(item => { %>
-
-            <li>
+               
+              
+              <li>
               <div class="menu-card hover:card">
 
                 <figure class="card-banner img-holder" style="--width: 100; --height: 100;">
@@ -28,15 +30,14 @@
                   
                   <div class="title-wrapper">
                     <h3 class="title-3">
-                      <a href="/item/<%= item._id %>" class="card-title"><%= item.name %></a>
+                      <a href="#" class="card-title"><%= item.name %></a>
                     </h3>
-                    <% if (item.seasonalItem) { %>
+                    <% if (item.isSeasonal) { %>
                       <span class="badge label-1">Seasonal</span>
-                      <% } else if (item.newItem  && item.seasonalItem) { %>
+                      <% } %>
+                      <% if (item.newItem) { %>
                         <span class="badge label-1">New</span>
-                      <% } else if (item.isSpecial) { %>
-                          <span class="badge label-1">Special</span>
-                    <% } %>
+                      <% } %>
 
                     <span class="span title-2">$<%= item.newPrice.toFixed(2) %></span>
                   </div>
@@ -53,20 +54,23 @@
 
           
           </ul>
-
-          <p class="menu-text text-center">
-            During winter daily from <span class="span">7:00 pm</span> to <span class="span">9:00 pm</span>
-          </p>
-
-          <a href="/" class="btn btn-primary">
-            <span class="text text-1">Back To Home</span>
-
-            <span class="text text-2" aria-hidden="true">Back To Home</span>
-          </a>
-
-          <img src="/images/shape-5.png" width="921" height="1036" loading="lazy" alt="shape"
+          <% } else { %>
+            
+            
+            <p class="menu-text text-center">
+              <span class="span">No Item Found</span><span class="span"></span>
+            </p>
+            
+            <a href="/" class="btn btn-primary">
+              <span class="text text-1">No Item Found</span>
+              
+              <span class="text text-2" aria-hidden="true">Back To Home</span>
+            </a>
+            <% } %>
+            
+            <img src="/images/shape-5.png" width="921" height="1036" loading="lazy" alt="shape"
             class="shape shape-2 move-anim">
-          <img src="/images/shape-6.png" width="343" height="345" loading="lazy" alt="shape"
+            <img src="/images/shape-6.png" width="343" height="345" loading="lazy" alt="shape"
             class="shape shape-3 move-anim">
 
         </div>
