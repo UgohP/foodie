@@ -33,7 +33,9 @@
                         </a>
                     </td>
                     <td>
-                        <button onclick="document.getElementById('id01').style.display='block'">Delete</button>
+                        <a href="/delete-item/<%= item._id %>?_method=DELETE">
+                        <button>Delete</button>
+                    </a>
                     </td>
                 </tr>
                 <% }) %>

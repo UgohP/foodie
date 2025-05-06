@@ -68,7 +68,7 @@
                                 </td>
                                 <td>0</td>
                                 <td>
-                                    <a href="">
+                                    <a href="/viewCat/<%= cat._id %>">
                                         <i class='bx' ><b>View &nearr;</b></i>
                                     </a>
                                 </td>
@@ -78,7 +78,9 @@
                                     </a>
                                 </td>
                                 <td>
-                                    <button onclick="document.getElementById('id01').style.display='block'">Delete</button>
+                                    <a href="/delete-cat/<%= cat._id %>/?_method=DELETE">
+                                    <button>Delete</button>
+                                </a>
                                 </td>
                             </tr>
                             <% }) %>
@@ -96,8 +98,7 @@
                     <thead>
                         <tr>
                             <th>Item</th>
-                            <th>Price</th>
-                            <th>Category</th>
+                            <th>NewPrice</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -109,9 +110,8 @@
                                 <p><%= item.name %></p>
                             </td>
                             <td>$<%= item.newPrice %></td>
-                            <td><%= item.category.name %></td>
                             <td>
-                                <a href="">
+                                <a href="/view-item/<%= item._id %>">
                                     <i class='bx' ><b>View &nearr;</b></i>
                                 </a>
                             </td>
@@ -121,7 +121,9 @@
                                 </a>
                             </td>
                             <td>
-                                <button onclick="document.getElementById('id01').style.display='block'">Delete</button>
+                                <a href="/delete-item/<%= item._id %>/?_method=DELETE">
+                                <button>Delete</button>
+                            </a>
                             </td>
                         </tr>
                         <% }) %>
@@ -129,26 +131,6 @@
                 </table>
             </div>
         </div>
-
-        <div id="id01" class="modal">
-            <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-          <form class="modal-content" action="/">
-            <div class="container">
-              <h1>Delete Account</h1>
-              <p>Are you sure you want to delete your account?</p>
-        
-              <div class="clearfix">
-                <a href="/dashboard">
-                <button type="button" class="cancelbtn">Cancel</button>
-            </a>
-            <a href="">
-                <button type="button" class="deletebtn">Delete</button>
-            </a>  
-            </div>
-            </div>
-          </form>
-        </div>
-
     </main>
     <!-- MAIN -->
     <!-- CONTENT -->

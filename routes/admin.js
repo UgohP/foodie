@@ -173,7 +173,7 @@ router.put("/edit-cat/:id", upload.single("image"), async (req, res) => {
 router.get("/edit-item/:id", async (req, res) => {
   try {
     const categories = await Category.find();
-    const items = await Item.findOne({ _id: req.params.id });
+    const items = await Item.findById(req.params.id).populate("category");
     res.render("admin/editItem", { categories, items, layout: adminLayout });
   } catch (error) {
     console.log(error);
@@ -223,10 +223,46 @@ router.put(
   }
 );
 
+router.get("/delete-cat/:id", async (req, res) => {
+  try {
+    const categories = await Category.findById({ _id: req.params.id });
+    res.render("admin/deleteCat", { layout: adminLayout, categories });
+  } catch (error) {
+    console.log(error);
+  }
+});
 router.delete("/delete-cat/:id", async (req, res) => {
   try {
-    await Category.deleteOne({ _id: req.params.id });
+    const categoryId = req.params.id;
+    await Item.deleteMany({ category: categoryId });
+    await Category.findByIdAndDelete(categoryId);
     res.redirect("/dashboard");
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.get("/delete-item/:id", async (req, res) => {
+  try {
+    const items = await Item.findById({ _id: req.params.id });
+    res.render("admin/deleteItem", { layout: adminLayout, items });
+  } catch (error) {
+    console.log(error);
+  }
+});
+router.delete("/delete-item/:id", async (req, res) => {
+  try {
+    await Item.findByIdAndDelete(req.params.id);
+    res.redirect("/dashboard");
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.get("/viewCat/:id", async (req, res) => {
+  try {
+    const categories = await Category.findById({ _id: req.params.id });
+    res.render("admin/viewCat", { categories, layout: adminLayout });
   } catch (error) {
     console.log(error);
   }
