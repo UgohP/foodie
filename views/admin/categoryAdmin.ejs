@@ -30,10 +30,34 @@
                                 <i class='bx' ><b>Edit &nearr;</b></i>
                             </a>
                         </td>
+                        <td>
+                            <button onclick="document.getElementById('id01').style.display='block'">Delete</button>
+                        </td>
                     </tr>
                     <% }) %>
                 </tbody>
             </table>
         </div>
     </div>
-    </main>
+    
+    <div id="id01" class="modal">
+        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+        <% categories.forEach(cat => { %>
+      <form class="modal-content" action="/delete-cat/<%= cat.id %>">
+        <div class="container">
+          <h1>Delete Account</h1>
+          <p>Are you sure you want to delete your account?</p>
+    
+          <div class="clearfix">
+            <a href="/categoryAdmin">
+                <button type="button" class="cancelbtn">Cancel</button>
+            </a>
+        <a href="">
+            <button type="button" class="deletebtn">Delete</button>
+        </a>  
+        </div>
+    </div>
+</form>
+<% }) %>
+    </div>
+</main>

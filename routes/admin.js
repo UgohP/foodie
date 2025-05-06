@@ -223,4 +223,12 @@ router.put(
   }
 );
 
+router.delete("/delete-cat/:id", async (req, res) => {
+  try {
+    await Category.deleteOne({ _id: req.params.id });
+    res.redirect("/dashboard");
+  } catch (error) {
+    console.log(error);
+  }
+});
 module.exports = router;
