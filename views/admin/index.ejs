@@ -8,15 +8,12 @@
                 <h1>Dashboard</h1>
                 <ul class="breadcrumb">
                     <li>
-                        <a href="#">Dashboard</a>
+                        <a href="/dashboard">Dashboard</a>
                     </li>
                     <li><i class='bx bx-chevron-right' ></i></li>
-                    <li>
-                        <a class="active" href="#">Home</a>
-                    </li>
                 </ul>
             </div>
-            <a href="/add" class="btn-download">
+            <a href="/addNew" class="btn-download">
                 <i class='bx' ></i>
                 <span class="text">+ Add New &nearr;</span>
             </a>
@@ -26,14 +23,14 @@
             <li>
                 <i class='bx bxs-calendar-check' ></i>
                 <span class="text">
-                    <h3>1020</h3>
+                    <h3><%= itemCount %></h3>
                     <p>Menus</p>
                 </span>
             </li>
             <li>
                 <i class='bx bxs-group' ></i>
                 <span class="text">
-                    <h3>2834</h3>
+                    <h3><%= reservationCount %></h3>
                     <p>Reservations</p>
                 </span>
             </li>
@@ -51,7 +48,7 @@
             <div class="order">
                 <div class="head">
                     <h3>Categories</h3>
-                    <a href="">
+                    <a href="/categoryAdmin">
                         <i class='bx' >View All &nearr;</i>
                     </a>
                 </div>
@@ -72,6 +69,11 @@
                                 <td>0</td>
                                 <td>
                                     <a href="">
+                                        <i class='bx' ><b>View &nearr;</b></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="">
                                         <i class='bx' ><b>Edit &nearr;</b></i>
                                     </a>
                                 </td>
@@ -83,7 +85,7 @@
             <div class="order">
                 <div class="head">
                     <h3>Items</h3>
-                    <a href="">
+                    <a href="/itemsAdmin">
                         <i class='bx' >View All &nearr;</i>
                     </a>
                 </div>
@@ -105,6 +107,11 @@
                             </td>
                             <td>$<%= item.newPrice %></td>
                             <td><%= item.category.name %></td>
+                            <td>
+                                <a href="">
+                                    <i class='bx' ><b>View &nearr;</b></i>
+                                </a>
+                            </td>
                             <td>
                                 <a href="">
                                     <i class='bx' ><b>Edit &nearr;</b></i>

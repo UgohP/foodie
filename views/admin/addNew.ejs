@@ -1,66 +1,51 @@
 <main>
-    
-    <form action="/category" method="POST" enctype="multipart/form-data">
-        <div class="head-title">
-            <div class="left">
-                <h1>Add Category</h1>
-            </div>
-        </div>
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" placeholder="Item Name">
-
-        <label for="image">Image</label>
-        <input type="file" id="image" name="image" placeholder="upload Image">
-
-        <input type="submit" value="Submit">
-    </form>
-    
-    <br>
-    <form action="/item" method="POST" enctype="multipart/form-data">
-        <div class="head-title">
-            <div class="left">
-                <h1>Add Item</h1>
-            </div>
-        </div>   
-
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" placeholder="Item Name...">
-      
-        <label for="category">Category</label>
-        <select id="category" name="category">
-          <% categories.forEach(cat => { %>
-            <option value="<%= cat._id %>"><%= cat.name %></option>
-          <% }) %>
-        </select>
-
-        <label for="newPrice">New Price</label>
-        <input type="number" id="newPrice" name="newPrice" step="0.01" placeholder="0.00">
-       
-        <label for="oldPrice">Old Price</label>
-        <input type="number" id="oldPrice" name="oldPrice" step="0.01" placeholder="0.00">
-       
-        <label for="description">Description</label>
-        <textarea id="description" name="description" placeholder="description.." style="height:200px"></textarea>
-        
-        <label for="image1">Image1</label>
-        <input type="file" id="image1" name="image1" placeholder="upload Image">
-       
-        <label for="image2">Image2</label>
-        <input type="file" id="image2" name="image2" placeholder="upload Image">
-       
-        <label>
-            <input type="checkbox" name="seasonalItem"> Seasonal
-          </label>
-<br>
-          <label>
-            <input type="checkbox" name="newItem"> New
-          </label>
-          <br>
-          <label>
-            <input type="checkbox" name="isSpecial"> Special
-          </label>
-      
-        <input type="submit" value="Submit">
-      </form>
-<main>
-
+  <div class="table-data">
+      <div class="order">
+          <div class="head">
+              <h3>Add New</h3>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                  <th>Add New</th>
+                  <th>Count</th>
+              </tr>
+          </thead>
+              <tbody>
+                  <tr>
+                          <td>
+                              <p>Category</p>
+                          </td>
+                          <td>0</td>
+                          <td>
+                            <a href="/categoryAdmin">
+                                <i class='bx' ><b>View &nearr;</b></i>
+                            </a>
+                        </td>
+                          <td>
+                              <a href="/addCat">
+                                  <i class='bx' ><b>Add &nearr;</b></i>
+                              </a>
+                          </td>
+                      </tr>
+                      <tr>
+                        <td>
+                            <p>Items</p>
+                        </td>
+                        <td>0</td>
+                        <td>
+                          <a href="/itemsAdmin">
+                              <i class='bx' ><b>View &nearr;</b></i>
+                          </a>
+                      </td>
+                        <td>
+                            <a href="/addItem">
+                                <i class='bx' ><b>Add &nearr;</b></i>
+                            </a>
+                        </td>
+                    </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+</main>

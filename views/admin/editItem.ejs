@@ -1,0 +1,53 @@
+<main>
+    <form action="/edit-item/<%= items._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+        <div class="head-title">
+            <div class="left">
+                <h1>Add Item</h1>
+            </div>
+        </div>   
+
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Item Name..." value="<%= items.name %>">
+      
+        <label for="category">Category</label>
+        <select id="category" name="category">
+          <% categories.forEach(cat => { %>
+            <option value="<%= items.category %>"><%= cat.name %></option>
+          <% }) %>
+        </select>
+
+        <label for="newPrice">New Price</label>
+        <input type="number" id="newPrice" name="newPrice" step="0.01" placeholder="0.00" value="<%= items.newPrice %>">
+       
+        <label for="oldPrice">Old Price</label>
+        <input type="number" id="oldPrice" name="oldPrice" step="0.01" placeholder="0.00" value="<%= items.oldPrice %>">
+       
+        <label for="description">Description</label>
+        <textarea id="description" name="description" placeholder="description.." style="height:200px"><%= items.description %></textarea>
+        
+        <img src="<%= items.image1 %>" alt="">
+        <br>
+        <label for="image1">Image1</label>
+        <input type="file" id="image1" name="image1" placeholder="upload Image">
+       
+        <img src="<%= items.image2 %>" alt="">
+        <br>
+        <label for="image2">Image2</label>
+        <input type="file" id="image2" name="image2" placeholder="upload Image">
+       
+        <label>
+            <input type="checkbox" name="seasonalItem" <%= items.seasonalItem ? 'checked' : '' %>> Seasonal
+          </label>
+<br>
+          <label>
+            <input type="checkbox" name="newItem" <%= items.newItem ? 'checked' : '' %>> New
+          </label>
+          <br>
+          <label>
+            <input type="checkbox" name="isSpecial" <%= items.isSpecial ? 'checked' : '' %>> Special
+          </label>
+      
+        <input type="submit" value="Submit">
+      </form>
+<main>
+
