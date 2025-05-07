@@ -4,6 +4,7 @@ const Category = require("../models/Category");
 const Item = require("../models/Item");
 const Reservation = require("../models/Reservation");
 
+//route to GET the homepage
 router.get("", async (req, res) => {
   try {
     const categories = await Category.find().limit(3);
@@ -17,15 +18,8 @@ router.get("", async (req, res) => {
     console.log(error);
   }
 });
-router.get("/item/:id", async (req, res) => {
-  try {
-    const itemId = req.params.id;
-    const item = await Item.findById({ _id: itemId });
-    res.render("item", { item });
-  } catch (error) {
-    console.log(error);
-  }
-});
+
+//route to GET all the categories page
 router.get("/categories", async (req, res) => {
   try {
     const categories = await Category.find();
@@ -35,15 +29,7 @@ router.get("/categories", async (req, res) => {
   }
 });
 
-router.get("/menus", async (req, res) => {
-  try {
-    const items = await Item.find();
-    res.render("menus", { items });
-  } catch (error) {
-    console.log(error);
-  }
-});
-
+//route to get all the items in a particular category
 router.get("/category-item/:id", async (req, res) => {
   try {
     const categoryId = req.params.id;
@@ -58,6 +44,28 @@ router.get("/category-item/:id", async (req, res) => {
   }
 });
 
+//route to GET all the menus(items) page
+router.get("/menus", async (req, res) => {
+  try {
+    const items = await Item.find();
+    res.render("menus", { items });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+//route to GET a particular item
+router.get("/item/:id", async (req, res) => {
+  try {
+    const itemId = req.params.id;
+    const item = await Item.findById({ _id: itemId });
+    res.render("item", { item });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+//route to GET the reservation page
 router.get("/reservation", async (req, res) => {
   try {
     res.render("reservation");
@@ -66,6 +74,7 @@ router.get("/reservation", async (req, res) => {
   }
 });
 
+//route to POST (create) a reservation
 router.post("/reservation", async (req, res) => {
   try {
     const { name, phone, persons, date, time, description } = req.body;
@@ -84,20 +93,22 @@ router.post("/reservation", async (req, res) => {
   }
 });
 
-router.get('/about', async(req, res) => {
-  try{
-    res.render('about')
-  }catch(error){
-    console.log(error)
+//route to GET the about page
+router.get("/about", async (req, res) => {
+  try {
+    res.render("about");
+  } catch (error) {
+    console.log(error);
   }
-})
+});
 
-router.get('/blogs', async(req, res) => {
-  try{
-    res.render('blog')
-  }catch(error){
-    console.log(error)
+//route to GET the blogs page
+router.get("/blogs", async (req, res) => {
+  try {
+    res.render("blog");
+  } catch (error) {
+    console.log(error);
   }
-})
+});
 
 module.exports = router;

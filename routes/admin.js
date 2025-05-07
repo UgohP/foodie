@@ -6,6 +6,7 @@ const Category = require("../models/Category");
 const Item = require("../models/Item");
 const Reservation = require("../models/Reservation");
 
+//route to GET the dashboard page
 router.get("/dashboard", async (req, res) => {
   try {
     const catCount = await Category.countDocuments();
@@ -29,6 +30,45 @@ router.get("/dashboard", async (req, res) => {
   }
 });
 
+//route to GET addNew page
+router.get("/addNew", async (req, res) => {
+  try {
+    res.render("admin/addNew", { layout: adminLayout });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+//route to GET the add category page
+router.get("/addCat", async (req, res) => {
+  try {
+    res.render("admin/addCat", { layout: adminLayout });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+//route to GET all the categories page
+router.get("/categoryAdmin", async (req, res) => {
+  try {
+    const categories = await Category.find().sort({ _id: -1 });
+    res.render("admin/categoryAdmin", { categories, layout: adminLayout });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+//route to GET a PARTICULAR category
+router.get("/viewCat/:id", async (req, res) => {
+  try {
+    const categories = await Category.findById({ _id: req.params.id });
+    res.render("admin/viewCat", { categories, layout: adminLayout });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+//route to GET (create) a category
 router.post("/addCat", upload.single("image"), async (req, res) => {
   try {
     const { name } = req.body;
@@ -41,6 +81,79 @@ router.post("/addCat", upload.single("image"), async (req, res) => {
     console.log(error);
   }
 });
+
+//route to GET the edit category page
+router.get("/edit-cat/:id", async (req, res) => {
+  try {
+    const categories = await Category.findOne({ _id: req.params.id });
+    res.render("admin/editCat", { categories, layout: adminLayout });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// route to EDIT (update) the category
+router.put("/edit-cat/:id", upload.single("image"), async (req, res) => {
+  try {
+    const { name } = req.body;
+
+    const updatedData = { name };
+
+    if (req.file) {
+      updatedData.image = "/uploads/" + req.file.filename;
+    }
+
+    await Category.findByIdAndUpdate(req.params.id, updatedData);
+    res.redirect("/categoryAdmin");
+  } catch (error) {
+    console.log("ERROR:", error);
+    res.status(500).send("Update failed.");
+  }
+});
+
+//route to GET the delete category page
+router.get("/delete-cat/:id", async (req, res) => {
+  try {
+    const categories = await Category.findById({ _id: req.params.id });
+    res.render("admin/deleteCat", { layout: adminLayout, categories });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+//route to DELETE a category
+router.delete("/delete-cat/:id", async (req, res) => {
+  try {
+    const categoryId = req.params.id;
+    await Item.deleteMany({ category: categoryId });
+    await Category.findByIdAndDelete(categoryId);
+    res.redirect("/dashboard");
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+//route to GET all the items page
+router.get("/itemsAdmin", async (req, res) => {
+  try {
+    const items = await Item.find().populate("category").sort({ _id: -1 });
+    res.render("admin/itemAdmin", { items, layout: adminLayout });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+//route to GET the add item page
+router.get("/addItem", async (req, res) => {
+  try {
+    const categories = await Category.find();
+    res.render("admin/addItem", { categories, layout: adminLayout });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+//route to POST (create) an item
 router.post(
   "/addItem",
   upload.fields([
@@ -82,94 +195,7 @@ router.post(
   }
 );
 
-router.get("/addNew", async (req, res) => {
-  try {
-    res.render("admin/addNew", { layout: adminLayout });
-  } catch (error) {
-    console.log(error);
-  }
-});
-
-router.get("/addCat", async (req, res) => {
-  try {
-    res.render("admin/addCat", { layout: adminLayout });
-  } catch (error) {
-    console.log(error);
-  }
-});
-
-router.get("/addItem", async (req, res) => {
-  try {
-    const categories = await Category.find();
-    res.render("admin/addItem", { categories, layout: adminLayout });
-  } catch (error) {
-    console.log(error);
-  }
-});
-
-router.get("/categoryAdmin", async (req, res) => {
-  try {
-    const categories = await Category.find().sort({ _id: -1 });
-    res.render("admin/categoryAdmin", { categories, layout: adminLayout });
-  } catch (error) {
-    console.log(error);
-  }
-});
-
-router.get("/itemsAdmin", async (req, res) => {
-  try {
-    const items = await Item.find().populate("category").sort({ _id: -1 });
-    res.render("admin/itemAdmin", { items, layout: adminLayout });
-  } catch (error) {
-    console.log(error);
-  }
-});
-
-router.get("/reservationAdmin", async (req, res) => {
-  try {
-    const reservations = await Reservation.find();
-    res.render("admin/reservations", { reservations, layout: adminLayout });
-  } catch (error) {
-    console.log(error);
-  }
-});
-
-router.get("/blogAdmin", async (req, res) => {
-  try {
-    res.render("admin/blog", { layout: adminLayout });
-  } catch (error) {
-    console.log(error);
-  }
-});
-
-router.get("/edit-cat/:id", async (req, res) => {
-  try {
-    const categories = await Category.findOne({ _id: req.params.id });
-    res.render("admin/editCat", { categories, layout: adminLayout });
-  } catch (error) {
-    console.log(error);
-  }
-});
-
-// EDIT CATEGORY ROUTE
-router.put("/edit-cat/:id", upload.single("image"), async (req, res) => {
-  try {
-    const { name } = req.body;
-
-    const updatedData = { name };
-
-    if (req.file) {
-      updatedData.image = "/uploads/" + req.file.filename;
-    }
-
-    await Category.findByIdAndUpdate(req.params.id, updatedData);
-    res.redirect("/categoryAdmin");
-  } catch (error) {
-    console.log("ERROR:", error);
-    res.status(500).send("Update failed.");
-  }
-});
-
+//route to get the EDIT item page
 router.get("/edit-item/:id", async (req, res) => {
   try {
     const categories = await Category.find();
@@ -180,6 +206,7 @@ router.get("/edit-item/:id", async (req, res) => {
   }
 });
 
+//route to EDIT an item
 router.put(
   "/edit-item/:id",
   upload.fields([
@@ -223,25 +250,7 @@ router.put(
   }
 );
 
-router.get("/delete-cat/:id", async (req, res) => {
-  try {
-    const categories = await Category.findById({ _id: req.params.id });
-    res.render("admin/deleteCat", { layout: adminLayout, categories });
-  } catch (error) {
-    console.log(error);
-  }
-});
-router.delete("/delete-cat/:id", async (req, res) => {
-  try {
-    const categoryId = req.params.id;
-    await Item.deleteMany({ category: categoryId });
-    await Category.findByIdAndDelete(categoryId);
-    res.redirect("/dashboard");
-  } catch (error) {
-    console.log(error);
-  }
-});
-
+//route to GET the delete item page
 router.get("/delete-item/:id", async (req, res) => {
   try {
     const items = await Item.findById({ _id: req.params.id });
@@ -250,6 +259,8 @@ router.get("/delete-item/:id", async (req, res) => {
     console.log(error);
   }
 });
+
+//route to DELETE an item
 router.delete("/delete-item/:id", async (req, res) => {
   try {
     await Item.findByIdAndDelete(req.params.id);
@@ -259,12 +270,23 @@ router.delete("/delete-item/:id", async (req, res) => {
   }
 });
 
-router.get("/viewCat/:id", async (req, res) => {
+//route to GET the reservation-admin page
+router.get("/reservationAdmin", async (req, res) => {
   try {
-    const categories = await Category.findById({ _id: req.params.id });
-    res.render("admin/viewCat", { categories, layout: adminLayout });
+    const reservations = await Reservation.find();
+    res.render("admin/reservations", { reservations, layout: adminLayout });
   } catch (error) {
     console.log(error);
   }
 });
+
+//route to GET the blog-admin page
+router.get("/blogAdmin", async (req, res) => {
+  try {
+    res.render("admin/blog", { layout: adminLayout });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 module.exports = router;
