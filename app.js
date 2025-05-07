@@ -11,7 +11,9 @@ connectDB();
 app.use(express.static("./public"));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
 app.use(methodOverride("_method"));
+
 app.use(expressLayout);
 app.set("layout", "./layouts/main");
 app.set("view engine", "ejs");
